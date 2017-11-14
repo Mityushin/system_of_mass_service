@@ -7,7 +7,10 @@
 class Device
 {
 public:
-    Device(const unsigned int serialNum, const long double processingTime = DEFAULT_PROCESSING_TIME);
+    Device(
+            const unsigned int serialNum,
+            const long double processingTime = DEFAULT_PROCESSING_TIME
+            );
 
     void putBid(Bid *bid, long double time);
     Bid *completeBid();
