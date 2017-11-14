@@ -4,12 +4,13 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    simpleapplication.cpp \
     device.cpp \
-    buffer.cpp
+    buffer.cpp \
+    bid.cpp
 
 HEADERS += \
-    simpleapplication.h \
     smooptions.h \
     device.h \
-    buffer.h
+    buffer.h \
+    bid.h \
+    enums.h
