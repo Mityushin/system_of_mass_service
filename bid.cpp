@@ -1,13 +1,13 @@
 #include "bid.h"
 
-Bid::Bid(const long double timeGeneration_,
-         const unsigned int serialNum_,
-         const unsigned int sourceID_)
+Bid::Bid(const long double timeGeneration,
+         const unsigned int serialNum,
+         const unsigned int sourceID)
     :
       status_(BidStatus::NEW),
-      timeGeneration_(timeGeneration_),
-      serialNum_(serialNum_),
-      sourceID_(sourceID_)
+      timeGeneration_(timeGeneration),
+      serialNum_(serialNum),
+      sourceID_(sourceID)
 {} //end Bid constructor
 
 unsigned int Bid::getTimeGeneration() const

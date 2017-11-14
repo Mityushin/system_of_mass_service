@@ -6,11 +6,13 @@ CONFIG -= qt
 SOURCES += main.cpp \
     device.cpp \
     buffer.cpp \
-    bid.cpp
+    bid.cpp \
+    source.cpp
 
 HEADERS += \
-    smooptions.h \
     device.h \
     buffer.h \
     bid.h \
-    enums.h
+    enums.h \
+    defaultoptions.h \
+    source.h

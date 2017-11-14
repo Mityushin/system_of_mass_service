@@ -8,9 +8,9 @@ class Bid
 {
 public:
     Bid(
-            const long double timeGeneration_,
-            const unsigned int serialNum_,
-            const unsigned int sourceID_
+            const long double timeGeneration,
+            const unsigned int serialNum,
+            const unsigned int sourceID
             );
 
     friend std::ostream &operator<<(std::ostream &stream, const Bid &bid);

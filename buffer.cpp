@@ -1,12 +1,12 @@
 #include "buffer.h"
 
-Buffer::Buffer(const unsigned int capacity = DEFAULT_BUFFER_CAPACITY)
+Buffer::Buffer(const unsigned int capacity)
     :
-      capacity(capacity),
-      size(0)
+      capacity_(capacity),
+      size_(0)
 {
-    bids = new Bid *[capacity];
-    for (unsigned int i = 0; i < capacity; i++)
+    bids = new Bid *[capacity_];
+    for (unsigned int i = 0; i < capacity_; i++)
     {
         bids[i] = nullptr;
     }
@@ -14,32 +14,32 @@ Buffer::Buffer(const unsigned int capacity = DEFAULT_BUFFER_CAPACITY)
 
 void Buffer::push(Bid *bid)
 {
-    if (size >= capacity) {
+    if (size_ >= capacity_) {
         bid->makeRejected();
     } else {
         bid->makeBuffered();
         bids[getPushIndex()] = bid;
-        size++;
+        size_++;
     }
 }
 
 Bid *Buffer::pop()
 {
-    if (size <= 0) {
+    if (size_ <= 0) {
 //        throw;
         return nullptr;
     } else {
         int index = getPopIndex();
         Bid *result = bids[index];
         bids[index] = nullptr;
-        size--;
+        size_--;
         return result;
     }
 }
 
 int Buffer::getPushIndex() const
 {
-    for (unsigned int i = 0; i < capacity; i++)
+    for (unsigned int i = 0; i < capacity_; i++)
     {
         if (bids[i] == nullptr)
         {
@@ -56,7 +56,7 @@ int Buffer::getPopIndex() const
 
     int priorityIndex = i;
 
-    for (; i < capacity; i++)
+    for (; i < capacity_; i++)
     {
         if (bids[i] == nullptr)
         {
@@ -74,9 +74,9 @@ int Buffer::getPopIndex() const
 std::ostream &operator<<(std::ostream &stream, const Buffer &buffer)
 {
     stream << "buffer ";
-    stream << "capacity:" << buffer.capacity << " ";
-    stream << "size:" << buffer.size << " ";
-    for (unsigned int i = 0; i < buffer.capacity; i++)
+    stream << "capacity:" << buffer.capacity_ << " ";
+    stream << "size:" << buffer.size_ << " ";
+    for (unsigned int i = 0; i < buffer.capacity_; i++)
     {
         stream << "{" << i << ", " << buffer.bids[i] << "} ";
     }
