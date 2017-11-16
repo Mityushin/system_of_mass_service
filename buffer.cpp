@@ -10,6 +10,22 @@ Buffer::Buffer(const unsigned int capacity)
     {
         bids[i] = nullptr;
     }
+} //end BUffer constructor
+
+Buffer::~Buffer()
+{
+    if (bids == nullptr)
+    {
+        return;
+    }
+    for (unsigned int i = 0; i < capacity_; i++)
+    {
+        if (bids[i] != nullptr)
+        {
+            delete bids[i];
+        }
+    }
+    delete[] bids;
 }
 
 void Buffer::push(Bid *bid)
@@ -73,9 +89,10 @@ int Buffer::getPopIndex() const
 
 std::ostream &operator<<(std::ostream &stream, const Buffer &buffer)
 {
-    stream << "buffer ";
-    stream << "capacity:" << buffer.capacity_ << " ";
-    stream << "size:" << buffer.size_ << " ";
+    stream << "Buffer" << std::endl;
+    stream << "  capacity:" << buffer.capacity_ << std::endl;
+    stream << "  size:" << buffer.size_ << std::endl;
+    stream << "    ";
     for (unsigned int i = 0; i < buffer.capacity_; i++)
     {
         stream << "{" << i << ", " << buffer.bids[i] << "} ";

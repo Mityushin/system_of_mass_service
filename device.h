@@ -2,15 +2,16 @@
 #define DEVICE_H
 
 #include "bid.h"
-#include "defaultoptions.h"
 
 class Device
 {
 public:
     Device(
             const unsigned int serialNum,
-            const long double processingTime = DEFAULT_PROCESSING_TIME
+            const long double processingTime = 0 //TODO: FIX IT!!!
             );
+
+    ~Device();
 
     void putBid(Bid *bid, long double time);
     Bid *completeBid();

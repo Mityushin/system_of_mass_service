@@ -6,7 +6,15 @@ Device::Device(const unsigned int serialNum,
       serialNum_(serialNum),
       processingTime_(processingTime),
       bid_(nullptr)
-{} //end Device constructor
+{}
+
+Device::~Device()
+{
+    if (bid_ != nullptr)
+    {
+        delete bid_;
+    }
+} //end Device constructor
 
 void Device::putBid(Bid *bid, long double time)
 {
@@ -68,7 +76,7 @@ std::ostream &operator<<(std::ostream &stream, const Device &device)
     stream << "busy: " << device.isBusy() << " ";
     stream << "start: " << device.processingStartTime_ << " ";
     stream << "process: " << device.processingTime_ << " ";
-    stream << "end: " << device.processingEndTime_ << " ";
+    stream << "end: " << device.processingEndTime_ << std::endl;
     return stream;
 }
 

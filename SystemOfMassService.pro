@@ -7,7 +7,10 @@ SOURCES += main.cpp \
     device.cpp \
     buffer.cpp \
     bid.cpp \
-    source.cpp
+    source.cpp \
+    sourcemanager.cpp \
+    devicemanager.cpp \
+    servicemanager.cpp
 
 HEADERS += \
     device.h \
@@ -15,4 +18,7 @@ HEADERS += \
     bid.h \
     enums.h \
     defaultoptions.h \
-    source.h
+    source.h \
+    sourcemanager.h \
+    devicemanager.h \
+    servicemanager.h

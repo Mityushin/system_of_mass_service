@@ -1,5 +1,4 @@
 #include "source.h"
-#include "bid.h"
 
 Source::Source(const unsigned int ID)
     :
