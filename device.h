@@ -7,13 +7,13 @@ class Device
 {
 public:
     Device(
-            const unsigned int serialNum,
+            const unsigned int ID,
             const long double processingTime = 0 //TODO: FIX IT!!!
             );
 
     ~Device();
 
-    void putBid(Bid *bid, long double time);
+    void putBid(Bid *bid);
     Bid *completeBid();
 
     bool isBusy() const;
@@ -27,7 +27,7 @@ public:
 private:
     long double updateProcessingTime();
 
-    const unsigned int serialNum_;
+    const unsigned int ID_;
 
     long double processingTime_;
     long double processingStartTime_;

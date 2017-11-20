@@ -10,7 +10,8 @@ SOURCES += main.cpp \
     source.cpp \
     sourcemanager.cpp \
     devicemanager.cpp \
-    servicemanager.cpp
+    servicemanager.cpp \
+    watcher.cpp
 
 HEADERS += \
     device.h \
@@ -21,4 +22,5 @@ HEADERS += \
     source.h \
     sourcemanager.h \
     devicemanager.h \
-    servicemanager.h
+    servicemanager.h \
+    watcher.h

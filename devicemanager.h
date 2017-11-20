@@ -8,20 +8,20 @@ class DeviceManager
 {
 public:
     DeviceManager(
-            Buffer * const buffer,
             const unsigned int numOfDevices
             );
     ~DeviceManager();
 
-    void putBid();
-    void completeBid();
+    void putBid(Bid *bid);
+    Bid *completeBid();
 
     friend std::ostream &operator<<(std::ostream &stream, const DeviceManager &deviceManager);
 
-private:
-    int getEmptyDeviceIndex();
+protected:
+    bool hasEmptyDevice() const;
+    unsigned int getEmptyDeviceIndex();
+    unsigned int getDeviceIDNextEvent() const;
 
-    Buffer * const buffer_;
     const unsigned int numOfDevices_;
     Device ** devices;
 };

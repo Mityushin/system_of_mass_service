@@ -1,9 +1,9 @@
 #include "device.h"
 
-Device::Device(const unsigned int serialNum,
+Device::Device(const unsigned int ID,
                const long double processingTime)
     :
-      serialNum_(serialNum),
+      ID_(ID),
       processingTime_(processingTime),
       bid_(nullptr)
 {}
@@ -16,7 +16,7 @@ Device::~Device()
     }
 } //end Device constructor
 
-void Device::putBid(Bid *bid, long double time)
+void Device::putBid(Bid *bid)
 {
     if (bid_ != nullptr)
     {
@@ -31,8 +31,8 @@ void Device::putBid(Bid *bid, long double time)
 
     bid_ = bid;
     bid_->makeRunned();
-    processingStartTime_ = time;
-    processingEndTime_ = time + updateProcessingTime();
+//    processingStartTime_ = time;
+//    processingEndTime_ = time + updateProcessingTime();
 }
 
 Bid *Device::completeBid()
@@ -72,7 +72,7 @@ long double Device::getProcessingEndTime() const
 
 std::ostream &operator<<(std::ostream &stream, const Device &device)
 {
-    stream << "device #" << device.serialNum_ << " ";
+    stream << "device #" << device.ID_ << " ";
     stream << "busy: " << device.isBusy() << " ";
     stream << "start: " << device.processingStartTime_ << " ";
     stream << "process: " << device.processingTime_ << " ";

@@ -8,18 +8,20 @@ class SourceManager
 {
 public:
     SourceManager(
-            Buffer * const buffer,
             const unsigned int numOfSources
             );
     ~SourceManager();
-    void generateBid();
+
+    Bid * generateBid(long double time);
+    void markRejected(Bid *bid);
 
     friend std::ostream &operator<<(std::ostream &stream, const SourceManager &sourceManager);
 
-private:
+protected:
+    unsigned int getSourceIDNextEvent() const;
+
     const unsigned int numOfSources_;
 
-    Buffer * const buffer_;
     Source **sources;
 };
 

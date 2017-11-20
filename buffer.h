@@ -8,13 +8,14 @@ class Buffer
 public:
     Buffer(const unsigned int capacity);
     ~Buffer();
-    void push(Bid *bid);
+    Bid *push(Bid *bid);
     Bid *pop();
 
-    friend std::ostream &operator<<(std::ostream &stream, const Buffer &buffer);
-
-private:
+    bool isEmpty() const;
     bool isFull() const;
+
+    friend std::ostream &operator<<(std::ostream &stream, const Buffer &buffer);
+private:
     int getPushIndex() const;
     int getPopIndex() const;
 

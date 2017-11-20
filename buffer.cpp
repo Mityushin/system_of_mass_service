@@ -28,14 +28,16 @@ Buffer::~Buffer()
     delete[] bids;
 }
 
-void Buffer::push(Bid *bid)
+Bid *Buffer::push(Bid *bid)
 {
     if (size_ >= capacity_) {
         bid->makeRejected();
+        return bid;
     } else {
         bid->makeBuffered();
         bids[getPushIndex()] = bid;
         size_++;
+        return nullptr;
     }
 }
 
@@ -51,6 +53,16 @@ Bid *Buffer::pop()
         size_--;
         return result;
     }
+}
+
+bool Buffer::isEmpty() const
+{
+    return size_ == 0;
+}
+
+bool Buffer::isFull() const
+{
+    return size_ == capacity_;
 }
 
 int Buffer::getPushIndex() const

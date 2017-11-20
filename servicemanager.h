@@ -5,8 +5,15 @@
 #include "sourcemanager.h"
 #include "devicemanager.h"
 #include "defaultoptions.h"
+#include "enums.h"
+#include "watcher.h"
+
+class Watcher;
 
 class ServiceManager
+        :
+        private SourceManager,
+        private DeviceManager
 {
 public:
     ServiceManager(
@@ -16,16 +23,21 @@ public:
             );
     ~ServiceManager();
 
+    void executeStep();
+    void execute();
+    Watcher *getCurrentState() const;
+
     friend std::ostream &operator<<(std::ostream &stream, const ServiceManager &serviceManager);
 
 private:
-    const unsigned int bufferCapacity_;
-    const unsigned int numberOfSources_;
-    const unsigned int numberOfDevices_;
+    NextEvent getNextEvent() const;
 
     Buffer * const buffer_;
-    SourceManager * const sourceManager_;
-    DeviceManager * const deviceManager_;
+    Watcher * const watcher_;
+
+    long double currentTime_;
+
+    friend class Watcher;
 };
 
 #endif // SERVICEMANAGER_H
