@@ -84,7 +84,6 @@ void ServiceManager::execute(const unsigned int numOfBids)
     {
         executeStep();
     }
-    //TODO: FIX IT!!!
 }
 
 Watcher * ServiceManager::getCurrentState() const
