@@ -6,22 +6,32 @@
 class Source
 {
 public:
-    Source(const unsigned int ID);
-    Bid *generateBid(long double time);
+    Source(
+            const unsigned int ID,
+            const long double alpha,
+            const long double beta
+            );
+    Bid *generateBid();
 
-    unsigned int getBidCount() const;
+    unsigned int getGeneratedBidCount() const;
     unsigned int getRejectedBidCount() const;
-    long double getGenerateTime() const;
+    long double getNextGenerateTime() const;
 
     void markRejected();
 
     friend std::ostream &operator<<(std::ostream &stream, const Source &source);
 
 private:
-    long double generateTime_;
+    void updateGenerateTime();
+
     const unsigned int ID_;
-    unsigned int bidCount_;
+    const long double alpha_;
+    const long double beta_;
+
+    unsigned int generatedBidCount_;
     unsigned int rejectedBidCount_;
+
+    long double generateTime_;
 };
 
 #endif // SOURCE_H
