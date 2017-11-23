@@ -14,7 +14,8 @@ enum NextEvent
 {
     GENERATE_BID,
     PUT_BID,
-    COMPLETE_BID
+    COMPLETE_BID,
+    SHUTDOWN
 };
 
 #endif // ENUMS_H
