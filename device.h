@@ -8,29 +8,30 @@ class Device
 public:
     Device(
             const unsigned int ID,
-            const long double processingTime = 0 //TODO: FIX IT!!!
+            const long double lambda
             );
 
     ~Device();
 
-    void putBid(Bid *bid);
+    void putBid(Bid *bid, const long double time);
     Bid *completeBid();
 
     bool isBusy() const;
-    bool isBusy(const long double currentTime) const;
 
-    long double getProcessingStartTime() const;
+    long double getWorkTime() const;
     long double getProcessingEndTime() const;
+    unsigned int getCompletedBidCount() const;
 
     friend std::ostream &operator<<(std::ostream &stream, const Device &device);
 
 private:
-    long double updateProcessingTime();
+    void updateProcessingTime(const long double time);
 
     const unsigned int ID_;
+    const long double lambda_;
 
-    long double processingTime_;
-    long double processingStartTime_;
+    unsigned int completedBidCount_;
+    long double workTime_;
     long double processingEndTime_;
 
     Bid *bid_;

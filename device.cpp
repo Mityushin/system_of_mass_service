@@ -1,22 +1,24 @@
 #include "device.h"
+#include <cstdlib>
+#include <cmath>
 
 Device::Device(const unsigned int ID,
-               const long double processingTime)
+               const long double lambda)
     :
       ID_(ID),
-      processingTime_(processingTime),
+      lambda_(lambda),
+      completedBidCount_(0),
+      workTime_(0.0L),
+      processingEndTime_(0.0L),
       bid_(nullptr)
 {}
 
 Device::~Device()
 {
-    if (bid_ != nullptr)
-    {
-        delete bid_;
-    }
+    delete bid_;
 } //end Device constructor
 
-void Device::putBid(Bid *bid)
+void Device::putBid(Bid *bid, const long double time)
 {
     if (bid_ != nullptr)
     {
@@ -29,10 +31,9 @@ void Device::putBid(Bid *bid)
         return;
     }
 
+    updateProcessingTime(time);
     bid_ = bid;
     bid_->makeRunned();
-//    processingStartTime_ = time;
-//    processingEndTime_ = time + updateProcessingTime();
 }
 
 Bid *Device::completeBid()
@@ -42,17 +43,11 @@ Bid *Device::completeBid()
         //throw
         return nullptr;
     }
+    completedBidCount_++;
     bid_->makeCompleted();
     Bid *result = bid_;
     bid_ = nullptr;
     return result;
-}
-
-bool Device::isBusy(const long double currentTime) const
-{
-    return (currentTime > processingStartTime_)
-            && (currentTime < processingEndTime_)
-            ;
 }
 
 bool Device::isBusy() const
@@ -60,9 +55,9 @@ bool Device::isBusy() const
     return bid_ != nullptr;
 }
 
-long double Device::getProcessingStartTime() const
+long double Device::getWorkTime() const
 {
-    return processingStartTime_;
+    return workTime_;
 }
 
 long double Device::getProcessingEndTime() const
@@ -70,18 +65,31 @@ long double Device::getProcessingEndTime() const
     return processingEndTime_;
 }
 
-std::ostream &operator<<(std::ostream &stream, const Device &device)
+unsigned int Device::getCompletedBidCount() const
 {
-    stream << "device #" << device.ID_ << " ";
-    stream << "busy: " << device.isBusy() << " ";
-    stream << "start: " << device.processingStartTime_ << " ";
-    stream << "process: " << device.processingTime_ << " ";
-    stream << "end: " << device.processingEndTime_ << std::endl;
-    return stream;
+    return completedBidCount_;
 }
 
-long double Device::updateProcessingTime()
+void Device::updateProcessingTime(const long double time)
 {
-    processingTime_ += 1;
-    return processingTime_;
+    long double var = (log(rand() + 1) - log(RAND_MAX)) / (-lambda_);
+    workTime_ += var;
+    processingEndTime_ = time + var;
+
+}
+
+std::ostream &operator<<(std::ostream &stream, const Device &device)
+{
+    stream << "device #" << device.ID_ << " "
+           << "(l:" << device.lambda_ << ") "
+           << "total:" << device.completedBidCount_ << "("
+           << device.workTime_ << ")";
+    stream << "end:";
+    if (device.isBusy()) {
+        stream << device.processingEndTime_;
+    } else {
+        stream << "-";
+    }
+    stream << std::endl;
+    return stream;
 }
