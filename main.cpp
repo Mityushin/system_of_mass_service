@@ -3,9 +3,10 @@
 
 int main()
 {
-    ServiceManager *serviceManager = new ServiceManager(1, 2, 3);
-    std::cout << serviceManager->getCurrentState()->test()<< std::endl;
+    ServiceManager *serviceManager = new ServiceManager();
+    serviceManager->execute();
     std::cout << *serviceManager << std::endl;
+//    std::cout << serviceManager->getCurrentState()->test()<< std::endl;
     delete serviceManager;
     return 0;
 }

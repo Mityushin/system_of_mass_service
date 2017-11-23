@@ -1,7 +1,8 @@
 #include "devicemanager.h"
 
 DeviceManager::DeviceManager(
-        const unsigned int numOfDevices
+        const unsigned int numOfDevices,
+        const long double lambda
         )
     :
       numOfDevices_(numOfDevices)
@@ -10,33 +11,26 @@ DeviceManager::DeviceManager(
 
     for (unsigned int i = 0; i < numOfDevices_; i++)
     {
-        devices[i] = new Device(i);
+        devices[i] = new Device(i, lambda);
     }
 } //end DeviceManager constructor
 
 DeviceManager::~DeviceManager()
 {
-    if (devices == nullptr)
-    {
-        return;
-    }
     for (unsigned int i = 0; i < numOfDevices_; i++)
     {
-        if (devices[i] != nullptr)
-        {
-            delete devices[i];
-        }
+        delete devices[i];
     }
     delete[] devices;
-}
+} //end DeviceManager destructor
 
-void DeviceManager::putBid(Bid *bid)
+void DeviceManager::putBid(Bid *bid, const long double time)
 {
     int index = getEmptyDeviceIndex();
     if (index < 0) {
         //throw
     } else {
-        devices[index]->putBid(bid);
+        devices[index]->putBid(bid, time);
     }
 }
 
@@ -55,9 +49,21 @@ bool DeviceManager::hasEmptyDevice() const
         }
     }
     return false;
-} //end DeviceManager destructor
+}
 
-unsigned int DeviceManager::getEmptyDeviceIndex()
+bool DeviceManager::hasBusyDevice() const
+{
+    for (unsigned int i = 0; i < numOfDevices_; i++)
+    {
+        if (devices[i]->isBusy())
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+unsigned int DeviceManager::getEmptyDeviceIndex() const
 {
     for (unsigned int i = 0; i < numOfDevices_; i++)
     {
@@ -94,6 +100,21 @@ unsigned int DeviceManager::getDeviceIDNextEvent() const
         }
     }
     return minIndex;
+}
+
+unsigned int DeviceManager::getCompletedBidCount() const
+{
+    unsigned int sum = 0;
+    for (unsigned int i = 0; i < numOfDevices_; i++)
+    {
+        sum += devices[i]->getCompletedBidCount();
+    }
+    return sum;
+}
+
+long double DeviceManager::getProcessingEndTime(unsigned int index) const
+{
+    return devices[index]->getProcessingEndTime();
 }
 
 std::ostream &operator<<(std::ostream &stream, const DeviceManager &deviceManager)

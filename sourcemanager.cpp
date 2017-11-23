@@ -1,7 +1,9 @@
 #include "sourcemanager.h"
 
 SourceManager::SourceManager(
-        const unsigned int numOfSources
+        const unsigned int numOfSources,
+        const long double alpha,
+        const long double beta
         )
     :
       numOfSources_(numOfSources)
@@ -10,50 +12,54 @@ SourceManager::SourceManager(
 
     for (unsigned int i = 0; i < numOfSources_; i++)
     {
-        sources[i] = new Source(i);
+        sources[i] = new Source(i, alpha, beta);
     }
-} //end SourceManager construstor
+} //end SourceManager constructor
 
 SourceManager::~SourceManager()
 {
-    if (sources == nullptr)
-    {
-        return;
-    }
     for (unsigned int i = 0; i < numOfSources_; i++)
     {
-        if (sources[i] != nullptr)
-        {
-            delete sources[i];
-        }
+        delete sources[i];
     }
     delete[] sources;
-}
+} //end SourceManager destructor
 
-Bid * SourceManager::generateBid(long double time)
+Bid * SourceManager::generateBid()
 {
-    return sources[getSourceIDNextEvent()]->generateBid(time);
+    return sources[getSourceIDNextEvent()]->generateBid();
 }
 
 void SourceManager::markRejected(Bid *bid)
 {
     sources[bid->getSourceID()]->markRejected();
     bid->makeRejected();
+    delete bid;
 }
 
 unsigned int SourceManager::getSourceIDNextEvent() const
 {
     unsigned int minIndex = 0;
-    long double minTime = sources[0]->getGenerateTime();
+    long double minTime = sources[0]->getNextGenerateTime();
     for (unsigned int i = 1; i < numOfSources_; i++)
     {
-        if (sources[i]->getGenerateTime() < minTime)
+        if (sources[i]->getNextGenerateTime() < minTime)
         {
-            minTime = sources[i]->getGenerateTime();
+            minTime = sources[i]->getNextGenerateTime();
             minIndex = i;
         }
     }
     return minIndex;
+}
+
+unsigned int SourceManager::getGeneratedBidCount() const
+{
+    unsigned int sum = 0;
+    for (unsigned int i = 0; i < numOfSources_; i++)
+    {
+        sum += sources[i]->getGeneratedBidCount();
+    }
+    return sum;
 }
 
 std::ostream &operator<<(std::ostream &stream, const SourceManager &sourceManager)

@@ -13,9 +13,7 @@ public:
             const unsigned int sourceID
             );
 
-    friend std::ostream &operator<<(std::ostream &stream, const Bid &bid);
-
-    unsigned int getTimeGeneration() const;
+    long double getTimeGeneration() const;
     unsigned int getSerialNum() const;
     unsigned int getSourceID() const;
 
@@ -31,6 +29,8 @@ public:
     void makeRunned();
     void makeCompleted();
     void makeRejected();
+
+    friend std::ostream &operator<<(std::ostream &stream, const Bid &bid);
 
 private:
     BidStatus status_;

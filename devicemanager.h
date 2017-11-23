@@ -8,19 +8,23 @@ class DeviceManager
 {
 public:
     DeviceManager(
-            const unsigned int numOfDevices
+            const unsigned int numOfDevices,
+            const long double lambda
             );
     ~DeviceManager();
 
-    void putBid(Bid *bid);
+    void putBid(Bid *bid, const long double time);
     Bid *completeBid();
 
     friend std::ostream &operator<<(std::ostream &stream, const DeviceManager &deviceManager);
 
 protected:
     bool hasEmptyDevice() const;
-    unsigned int getEmptyDeviceIndex();
+    bool hasBusyDevice() const;
+    unsigned int getEmptyDeviceIndex() const;
     unsigned int getDeviceIDNextEvent() const;
+    unsigned int getCompletedBidCount() const;
+    long double getProcessingEndTime(unsigned int index) const;
 
     const unsigned int numOfDevices_;
     Device ** devices;

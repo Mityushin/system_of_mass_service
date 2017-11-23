@@ -10,7 +10,7 @@ Buffer::Buffer(const unsigned int capacity)
     {
         bids[i] = nullptr;
     }
-} //end BUffer constructor
+} //end Buffer constructor
 
 Buffer::~Buffer()
 {
@@ -26,11 +26,11 @@ Buffer::~Buffer()
         }
     }
     delete[] bids;
-}
+} //end Buffer destructor
 
 Bid *Buffer::push(Bid *bid)
 {
-    if (size_ >= capacity_) {
+    if (isFull()) {
         bid->makeRejected();
         return bid;
     } else {
@@ -43,7 +43,7 @@ Bid *Buffer::push(Bid *bid)
 
 Bid *Buffer::pop()
 {
-    if (size_ <= 0) {
+    if (isEmpty()) {
 //        throw;
         return nullptr;
     } else {
@@ -91,6 +91,15 @@ int Buffer::getPopIndex() const
             continue;
         }
 
+        if (bids[i]->getSourceID() == bids[priorityIndex]->getSourceID())
+        {
+            if (bids[i]->getTimeGeneration() < bids[priorityIndex]->getTimeGeneration())
+            {
+                priorityIndex = i;
+            }
+            continue;
+        }
+
         if (bids[i]->getSourceID() < bids[priorityIndex]->getSourceID())
         {
             priorityIndex = i;
@@ -107,7 +116,13 @@ std::ostream &operator<<(std::ostream &stream, const Buffer &buffer)
     stream << "    ";
     for (unsigned int i = 0; i < buffer.capacity_; i++)
     {
-        stream << "{" << i << ", " << buffer.bids[i] << "} ";
+        stream << "{" << i << ", ";
+        if (buffer.bids[i] != nullptr) {
+            stream << *buffer.bids[i];
+        } else {
+            stream << "-";
+        }
+        stream << "} ";
     }
     stream << std::endl;
     return stream;

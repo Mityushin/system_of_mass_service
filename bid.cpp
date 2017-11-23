@@ -10,7 +10,7 @@ Bid::Bid(const long double timeGeneration,
       sourceID_(sourceID)
 {} //end Bid constructor
 
-unsigned int Bid::getTimeGeneration() const
+long double Bid::getTimeGeneration() const
 {
     return timeGeneration_;
 }
@@ -78,9 +78,9 @@ void Bid::makeRejected()
 
 std::ostream &operator<<(std::ostream &stream, const Bid &bid)
 {
-    stream << "bid #" << bid.serialNum_<< " ";
-    stream << "from source #" << bid.sourceID_ << " ";
-    stream << "at " << bid.timeGeneration_ << " ";
-    stream << "status: " << bid.status_ << std::endl;
+    stream << "bid #" << bid.sourceID_ << ".";
+    stream << bid.serialNum_ << " ";
+//    stream << "at " << bid.timeGeneration_ << " ";
+//    stream << "status: " << bid.status_ << std::endl;
     return stream;
 }
