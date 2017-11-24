@@ -68,7 +68,7 @@ void ServiceManager::executeStep()
 
     //debug
     std::cout << *this;
-    std::cin.get();
+//    std::cin.get();
 }
 
 void ServiceManager::execute(const unsigned int numOfBids)

@@ -23,16 +23,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #CONFIG -= app_bundle
 #CONFIG -= qt
 
-SOURCES += main.cpp \
-    device.cpp \
-    buffer.cpp \
+SOURCES += \
     bid.cpp \
+    buffer.cpp \
+    device.cpp \
+    devicemanager.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    servicemanager.cpp \
     source.cpp \
     sourcemanager.cpp \
-    devicemanager.cpp \
-    servicemanager.cpp \
-    watcher.cpp \
-    mainwindow.cpp
+    stepwindow.cpp \
+    watcher.cpp
 
 HEADERS += \
     device.h \
@@ -45,7 +47,24 @@ HEADERS += \
     devicemanager.h \
     servicemanager.h \
     watcher.h \
-    mainwindow.h
+    mainwindow.h \
+    stepwindow.h \
+    bid.h \
+    buffer.h \
+    defaultoptions.h \
+    device.h \
+    devicemanager.h \
+    enums.h \
+    mainwindow.h \
+    servicemanager.h \
+    source.h \
+    sourcemanager.h \
+    stepwindow.h \
+    watcher.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    stepwindow.ui
+
+RESOURCES += \
+    resources.qrc
