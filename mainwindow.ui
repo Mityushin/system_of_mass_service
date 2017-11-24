@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>260</width>
-    <height>380</height>
+    <width>300</width>
+    <height>420</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>260</width>
-    <height>380</height>
+    <width>300</width>
+    <height>420</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>260</width>
-    <height>380</height>
+    <width>300</width>
+    <height>420</height>
    </size>
   </property>
   <property name="baseSize">
@@ -37,7 +37,7 @@
      <rect>
       <x>30</x>
       <y>20</y>
-      <width>200</width>
+      <width>241</width>
       <height>311</height>
      </rect>
     </property>
@@ -51,9 +51,9 @@
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>60</x>
         <y>50</y>
-        <width>101</width>
+        <width>121</width>
         <height>181</height>
        </rect>
       </property>
@@ -82,9 +82,9 @@
      <widget class="QWidget" name="formLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>30</x>
         <y>20</y>
-        <width>161</width>
+        <width>181</width>
         <height>241</height>
        </rect>
       </property>
@@ -162,6 +162,32 @@
       </layout>
      </widget>
     </widget>
+   </widget>
+   <widget class="QLabel" name="labelGitHub">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>350</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>github.com/mityushin</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelEmail">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>370</y>
+      <width>191</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>mityushin.dmitry@gmail.com</string>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
