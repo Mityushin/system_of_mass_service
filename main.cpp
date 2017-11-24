@@ -1,12 +1,20 @@
-#include <iostream>
-#include "servicemanager.h"
+//#include <iostream>
+//#include "servicemanager.h"
 
-int main()
+#include "mainwindow.h"
+#include <QApplication>
+
+
+int main(int argc, char *argv[])
 {
-    ServiceManager *serviceManager = new ServiceManager();
-    serviceManager->execute();
-    std::cout << *serviceManager << std::endl;
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+
+//    ServiceManager *serviceManager = new ServiceManager();
+//    serviceManager->execute();
+//    std::cout << *serviceManager << std::endl;
 //    std::cout << serviceManager->getCurrentState()->test()<< std::endl;
-    delete serviceManager;
-    return 0;
+//    delete serviceManager;
+    return a.exec();
 }
