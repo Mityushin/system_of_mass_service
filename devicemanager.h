@@ -1,7 +1,6 @@
 #ifndef DEVICEMANAGER_H
 #define DEVICEMANAGER_H
 
-#include "buffer.h"
 #include "device.h"
 
 class DeviceManager

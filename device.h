@@ -15,6 +15,7 @@ public:
 
     void putBid(Bid *bid, const long double time);
     Bid *completeBid();
+    const Bid *shareBid() const;
 
     bool isBusy() const;
 

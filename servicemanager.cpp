@@ -10,6 +10,7 @@ ServiceManager::ServiceManager(const unsigned int bufferCapacity,
     :
       SourceManager(numberOfSources, alpha, beta),
       DeviceManager(numberOfDevices, lambda),
+      bufferCapacity_(bufferCapacity),
       buffer_(new Buffer(bufferCapacity)),
       watcher_(new Watcher(this)),
       currentTime_(0.0L),
@@ -67,8 +68,12 @@ void ServiceManager::executeStep()
     }
 
     //debug
-    std::cout << *this;
+//    std::cout << *this;
 //    std::cin.get();
+    std::cout << "Generated: " << getGeneratedBidCount() << std::endl;
+    std::cout << "Rejected: " << getRejectedBidCount() << std::endl;
+    std::cout << "Completed: " << getCompletedBidCount() << std::endl;
+    std::cout << "Current time:" << currentTime_ << std::endl << std::endl;
 }
 
 void ServiceManager::execute(const unsigned int numOfBids)
@@ -89,6 +94,21 @@ void ServiceManager::execute(const unsigned int numOfBids)
 Watcher * ServiceManager::getCurrentState() const
 {
     return watcher_;
+}
+
+unsigned int ServiceManager::getNumOfSources() const
+{
+    return numOfSources_;
+}
+
+unsigned int ServiceManager::getNumOfDevices() const
+{
+    return numOfDevices_;
+}
+
+unsigned int ServiceManager::getBufferCapacity() const
+{
+    return bufferCapacity_;
 }
 
 NextEvent ServiceManager::getNextEvent() const

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <stepwindow.h>
 #include "servicemanager.h"
+#include "defaultoptions.h"
 
 namespace Ui {
 class MainWindow;

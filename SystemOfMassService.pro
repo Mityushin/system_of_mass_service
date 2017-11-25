@@ -37,18 +37,6 @@ SOURCES += \
     watcher.cpp
 
 HEADERS += \
-    device.h \
-    buffer.h \
-    bid.h \
-    enums.h \
-    defaultoptions.h \
-    source.h \
-    sourcemanager.h \
-    devicemanager.h \
-    servicemanager.h \
-    watcher.h \
-    mainwindow.h \
-    stepwindow.h \
     bid.h \
     buffer.h \
     defaultoptions.h \

@@ -139,7 +139,11 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QSpinBox" name="spinBoxBids"/>
+        <widget class="QSpinBox" name="spinBoxBids">
+         <property name="maximum">
+          <number>1000000</number>
+         </property>
+        </widget>
        </item>
        <item row="1" column="1">
         <widget class="QSpinBox" name="spinBoxSources"/>

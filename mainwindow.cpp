@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "defaultoptions.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -44,7 +43,7 @@ ServiceManager *MainWindow::setupSystem()
     long double alpha = ui->doubleSpinBoxAlpha->value();
     long double beta = ui->doubleSpinBoxBeta->value();
     long double lambda = ui->doubleSpinBoxLambda->value();
-    return new ServiceManager(buffer,sources, devices,
+    return new ServiceManager(buffer, sources, devices,
                               alpha, beta, lambda);
 }
 

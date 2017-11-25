@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <servicemanager.h>
+#include "watcher.h"
 
 namespace Ui {
 class StepWindow;
@@ -22,6 +23,8 @@ private slots:
     void on_pushButtonNextStep_clicked();
 
 private:
+    void updateTables();
+
     ServiceManager *serviceManager;
     Ui::StepWindow *ui;
 };

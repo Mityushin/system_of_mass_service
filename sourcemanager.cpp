@@ -62,6 +62,16 @@ unsigned int SourceManager::getGeneratedBidCount() const
     return sum;
 }
 
+unsigned int SourceManager::getRejectedBidCount() const
+{
+    unsigned int sum = 0;
+    for (unsigned int i = 0; i < numOfSources_; i++)
+    {
+        sum += sources[i]->getRejectedBidCount();
+    }
+    return sum;
+}
+
 std::ostream &operator<<(std::ostream &stream, const SourceManager &sourceManager)
 {
     stream << "SourceManager" << std::endl;
