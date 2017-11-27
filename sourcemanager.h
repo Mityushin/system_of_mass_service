@@ -1,7 +1,6 @@
 #ifndef SOURCEMANAGER_H
 #define SOURCEMANAGER_H
 
-#include "buffer.h"
 #include "source.h"
 
 class SourceManager
@@ -22,6 +21,7 @@ public:
 protected:
     unsigned int getSourceIDNextEvent() const;
     unsigned int getGeneratedBidCount() const;
+    unsigned int getRejectedBidCount() const;
 
     const unsigned int numOfSources_;
 

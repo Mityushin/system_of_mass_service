@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>icon/right-arrow.png</file>
+        <file>icon/right-arrow.svg</file>
+        <file>icon/multiply.png</file>
+        <file>icon/multiply.svg</file>
+    </qresource>
+</RCC>

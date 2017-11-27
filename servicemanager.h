@@ -9,6 +9,7 @@
 #include "watcher.h"
 
 class Watcher;
+class Buffer;
 
 class ServiceManager
         :
@@ -31,6 +32,9 @@ public:
             const unsigned int numOfBids = DEFAULT_NUMBER_OF_BIDS
             );
     Watcher *getCurrentState() const;
+    unsigned int getNumOfSources() const;
+    unsigned int getNumOfDevices() const;
+    unsigned int getBufferCapacity() const;
 
     friend std::ostream &operator<<(std::ostream &stream, const ServiceManager &serviceManager);
 
@@ -40,6 +44,7 @@ private:
     bool isShuttingDown() const;
     bool isLastBidDone() const;
 
+    unsigned int bufferCapacity_;
     Buffer * const buffer_;
     Watcher * const watcher_;
 

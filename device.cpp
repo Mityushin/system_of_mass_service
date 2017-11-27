@@ -50,6 +50,11 @@ Bid *Device::completeBid()
     return result;
 }
 
+const Bid *Device::shareBid() const
+{
+    return bid_;
+}
+
 bool Device::isBusy() const
 {
     return bid_ != nullptr;

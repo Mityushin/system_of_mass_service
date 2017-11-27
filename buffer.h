@@ -2,9 +2,13 @@
 #define BUFFER_H
 
 #include "bid.h"
+#include "watcher.h"
+
+class Watcher;
 
 class Buffer
 {
+    friend class Watcher;
 public:
     Buffer(const unsigned int capacity);
     ~Buffer();
